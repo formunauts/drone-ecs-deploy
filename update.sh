@@ -55,4 +55,6 @@ if [ ! -z ${PLUGIN_ROLE} ]; then
   args+=( "--aws-assume-role ${PLUGIN_ROLE}" )
 fi
 
+set -x
+
 ecs-deploy ${args[@]}
