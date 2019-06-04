@@ -11,7 +11,7 @@ if [ -z ${PLUGIN_IMAGE_NAME} ]; then
 fi
 
 if [ -z ${PLUGIN_SERVICE} ]; then
-  echo "missing Service"
+  echo "missing service"
   exit 1
 fi
 
@@ -39,4 +39,23 @@ if [ ! -z ${PLUGIN_AWS_SECRET_ACCESS_KEY} ]; then
   AWS_SECRET_ACCESS_KEY=$PLUGIN_AWS_SECRET_ACCESS_KEY
 fi
 
-ecs-deploy --region ${PLUGIN_AWS_REGION} --cluster ${PLUGIN_CLUSTER} --image ${PLUGIN_IMAGE_NAME} --service-name ${PLUGIN_SERVICE} --timeout ${PLUGIN_TIMEOUT} --min ${PLUGIN_MIN} --max ${PLUGIN_MAX}
+args=()
+args+=(
+  "--region ${PLUGIN_AWS_REGION}"
+  "--cluster ${PLUGIN_CLUSTER}"
+  "--image ${PLUGIN_IMAGE_NAME}"
+  "--service-name ${PLUGIN_SERVICE}"
+  "--timeout ${PLUGIN_TIMEOUT}"
+  "--min ${PLUGIN_MIN}"
+  "--max ${PLUGIN_MAX}"
+)
+
+if [ ! -z ${PLUGIN_ROLE} ]; then
+  args+=( "--aws-assume-role ${PLUGIN_ROLE}" )
+fi
+
+if [ ! -z ${PLUGIN_USE_INSTANCE_PROFILE} ]; then
+  args+=( "--aws-instance-profile" )
+fi
+
+ecs-deploy "${args[@]}"
