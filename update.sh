@@ -48,12 +48,11 @@ args+=(
   "--timeout ${PLUGIN_TIMEOUT}"
   "--min ${PLUGIN_MIN}"
   "--max ${PLUGIN_MAX}"
+  "--verbose"
 )
 
 if [ ! -z ${PLUGIN_ROLE} ]; then
   args+=( "--aws-assume-role ${PLUGIN_ROLE}" )
 fi
-
-VERBOSE=true
 
 ecs-deploy ${args[@]}
