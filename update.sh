@@ -59,9 +59,4 @@ if [[ -z ${PLUGIN_AWS_ACCESS_KEY_ID} || -z ${PLUGIN_AWS_SECRET_ACCESS_KEY} ]]; t
   args+=( "--aws-instance-profile" )
 fi
 
-# Debug
-echo `aws sts get-caller-identity`
-
-set -x
-
 ecs-deploy ${args[@]}
