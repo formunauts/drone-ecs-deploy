@@ -12,7 +12,8 @@ RUN apk add --update --no-cache \
     awscli --ignore-installed \
     && rm -r /root/.cache
 
-RUN curl https://raw.githubusercontent.com/UmboCV/ecs-deploy/master/ecs-deploy -o /bin/ecs-deploy \
+# Change back to https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy when released there
+RUN curl https://raw.githubusercontent.com/UmboCV/ecs-deploy/develop/ecs-deploy -o /bin/ecs-deploy \
     && chmod +x /bin/ecs-deploy
 
 COPY update.sh /bin/
