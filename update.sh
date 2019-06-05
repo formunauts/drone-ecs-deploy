@@ -55,6 +55,10 @@ if [ ! -z ${PLUGIN_ROLE} ]; then
   args+=( "--aws-assume-role ${PLUGIN_ROLE}" )
 fi
 
+if [[ -z ${PLUGIN_AWS_ACCESS_KEY_ID} || -z ${PLUGIN_AWS_SECRET_ACCESS_KEY} ]]; then
+  args+=( "--aws-instance-profile" )
+fi
+
 set -x
 
 ecs-deploy ${args[@]}
