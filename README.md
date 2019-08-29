@@ -1,3 +1,5 @@
+# DEPRECATED: Use https://github.com/formunauts/drone-ecs-deploy-advanced
+
 # ECS deploy plugin for drone.io
 
 [https://hub.docker.com/r/formunauts/drone-ecs-deploy/](https://hub.docker.com/r/formunauts/drone-ecs-deploy/)
